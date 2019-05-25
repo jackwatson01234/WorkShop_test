@@ -60,7 +60,8 @@ class FileController extends Controller
      */
     public function show($id)
     {
-        //
+        $dl = File::find($id);
+        return Storage::download($dl->path, $dl->title);
     }
 
     /**
