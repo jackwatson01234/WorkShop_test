@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\File;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -91,6 +92,9 @@ class FileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $del = File::find($id);
+        Storage::delete($del->path);
+        $del->delete();
+        return redirect('/file');
     }
 }
