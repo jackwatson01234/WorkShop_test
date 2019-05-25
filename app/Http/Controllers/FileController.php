@@ -37,16 +37,18 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'file' => 'required|file|max:20000'
-        ]);
-        $upload = $request->file('file');
-        $path = $upload->store('public/storage');
-        $file = File::create([
-            'title' => $upload->getClientOriginalName(),
-            'description' => '',
-            'path' => $path
-        ]);
+        // $this->validate($request, [
+        //     'file' => 'required|file|mimes:png,jpg,webp,pdf,xps,odt,docx|max:20000'
+        // ]);
+        $files = $request->file('file');
+        foreach ($files as $file) {
+            File::create([
+                'title' => $file->getClientOriginalName(),
+                'description' => '',
+                'path' => $file->store('public/storage')
+            ]);
+        }
+
         return redirect('/file')->with('success', 'File is uploaded.');
     }
 
