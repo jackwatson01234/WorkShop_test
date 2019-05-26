@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\File;
 use Illuminate\Support\Facades\Storage;
+use Mail;
 
 class FileController extends Controller
 {
@@ -72,7 +73,15 @@ class FileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $fl = File::find($id);
+        $data = array('title' => $fl->title, 'path'=> $fl->path);
+        Mail::send('emails.attachment', $data, function($message) use($fl){
+            $message->to('reza.ahmadi0117@gmail.com', 'Reza Ahmadi')->subject('Laravel file
+                            attachment and embed');
+            $message->attach(storage_path('app/'.$fl->path));
+            $message->from('mircosoft@gmail.com', 'Microsoft');
+        });
+        return redirect('/file')->with('success', 'file attachment has been sent to your email');
     }
 
     /**

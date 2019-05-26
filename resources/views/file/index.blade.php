@@ -23,6 +23,7 @@
                                 <button type="submit" class="btn btn-danger">Delete</button>
                                 <a href="{{ route('downloadfile', $file->id) }}" class="btn btn-primary">
                                 Download</a>
+                                <a href="{{ route('emailfile', $file->id) }}" class="btn btn-success">Email</a>
                             </form>
                         </div>
                     </div>
