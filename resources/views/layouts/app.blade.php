@@ -22,6 +22,9 @@
     <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jquery.dataTables.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/dataTables.bootstrap4.js') }}" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
+    <script src="{{ asset('js/dropzone.js') }}"></script>
     @yield('javascript')
 </head>
 <body>

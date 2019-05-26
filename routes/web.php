@@ -28,7 +28,7 @@ Route::post('/file/upload','FileController@store')->name('uploadfile');
 Route::delete('/file/{id}','FileController@destroy')->name('deletefile');
 Route::get('/file/download/{id}','FileController@show')->name('downloadfile');
 Route::get('/file/email/{id}','FileController@edit')->name('emailfile');
-// Route::post('/file/dropzone','FileController@dropzone')->name('dropzone');
+Route::post('/file/dropzone','FileController@dropzone')->name('dropzone');
 // Route::get('/login/facebook','Auth\LoginController@redirectToFacebook')->name('fblogin');
 // Route::get('/login/facebook/callback', 'Auth\LoginController@handleFacebookCallback')->name('fbcallback');
 // Route::get('/login/twitter','Auth\LoginController@redirectToTwitter')->name('twlogin');
