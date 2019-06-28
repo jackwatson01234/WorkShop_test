@@ -15,6 +15,22 @@
                     </p>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <nav>
+                        <ul class="pagination">
+                            <li v-bind:class="{disabled:!pagination.first_link}" class="page-item"><a href="#" @click="viewProduct(pagination.first_link)" class="page-link">&laquo;</a></li>
+                            <li v-bind:class="{disabled:!pagination.prev_link}" class="page-item"><a href="#" @click="viewProduct(pagination.perv_link)" class="page-link">&lt;</a></li>
+                            <li v-for="n in pagination.last_page" v-bind:key="n" v-bind:class="{active:!pagination.current_page == n}" class="page-item"><a href="#" @click="viewProduct(pagination.path_page + n)" class="page-link">{{n}}</a></li>
+                            <li v-bind:class="{disabled:!pagination.next_link}" class="page-item"><a href="#" @click="viewProduct(pagination.next_link)" class="page-link">&gt;</a></li>
+                            <li v-bind:class="{disabled:!pagination.last_link}" class="page-item"><a href="#" @click="viewProduct(pagination.last_link)" class="page-link">&raquo;</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
             <form>
@@ -62,18 +78,32 @@ export default {
                 amount: ''
             },
             add: true,
-            edit: false
+            edit: false,
+            pagination: {}
         }
     },
     created(){
         this.viewProduct();
     },
     methods: {
-        viewProduct(){
-            fetch('api/products')
+        viewProduct(pagi){
+            pagi = pagi || 'api/products';
+            fetch(pagi)
             .then(res => res.json())
             .then(res => {
-                this.products = res.data
+                this.products = res.data;
+                this.pagination = {
+                    current_page : res.meta.current_page,
+                    last_page: res.meta.last_page,
+                    from_page: res.meta.from,
+                    to_page: res.meta.to_page,
+                    total_page: res.meta.total,
+                    path_page: res.meta.path+"?page=",
+                    first_link:res.links.first,
+                    last_link:res.links.last,
+                    prev_link:res.links.prev,
+                    next_link:res.links.next
+                };
             })
             .catch(err => console.log(err));
         },
