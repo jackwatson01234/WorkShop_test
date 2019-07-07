@@ -6440,7 +6440,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.product-item{\n    width: 350px;\n    float: left;\n}\n", ""]);
+exports.push([module.i, "\n.product-item{\r\n    width: 350px;\r\n    float: left;\n}\r\n", ""]);
 
 // exports
 
