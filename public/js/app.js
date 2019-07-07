@@ -1753,6 +1753,7 @@ __webpack_require__.r(__webpack_exports__);
         this.total = this.carts.reduce(function (total, item) {
           return total + item.amount * item.price;
         }, 0);
+        localStorage.setItem('total', this.total);
       }
     }
   }
@@ -38028,9 +38029,14 @@ var render = function() {
             _c("div", { staticClass: "mt-2 text-right" }, [
               _c("p", [_vm._v("Total Price: " + _vm._s(_vm.total))]),
               _vm._v(" "),
-              _c("button", { staticClass: "btn btn-info" }, [
-                _vm._v("Checkout with Stripe")
-              ]),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-info",
+                  attrs: { href: "/checkout/stripe" }
+                },
+                [_vm._v("Checkout with Stripe")]
+              ),
               _vm._v(" "),
               _c("button", { staticClass: "btn btn-primary" }, [
                 _vm._v("Checkout with Paypal Barintree")
